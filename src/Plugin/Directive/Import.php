@@ -1,9 +1,7 @@
 <?php
 namespace Jsonyx\Plugin\Directive;
 
-
-
-use Jsonyx\Mix\ArrayPath;
+use Exrray\Exrray;
 use Jsonyx\Plugin\AbstractPlugin;
 
 class Import extends AbstractPlugin
@@ -27,10 +25,10 @@ echo "<h1>$file</h1>";
                 ->parseFile($file);
             
             if ($fragment && is_array($includeData)) {
-                $includeData = ArrayPath::get($includeData, $fragment);
+                $includeData = Exrray::get($includeData, $fragment);
             }
 
-            ArrayPath::mergeTo($path, $data, $includeData);
+            Exrray::mergeTo($path, $data, $includeData);
 
             return null;
         }

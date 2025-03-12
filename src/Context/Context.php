@@ -1,7 +1,7 @@
 <?php
 namespace Jsonyx\Context;
 
-use Jsonyx\Mix\ArrayPath;
+use Exrray\Exrray;
 
 class Context implements ContextInterface
 {
@@ -22,12 +22,12 @@ class Context implements ContextInterface
 
     public function get(string $name): mixed
     {
-        return ArrayPath::get($this->data, $name);
+        return Exrray::get($this->data, $name);
     }
 
     public function add( array $data): static
     {
-        $this->data = ArrayPath::merge($this->data, $data);
+        $this->data = Exrray::merge($this->data, $data);
 
         return $this;
     }
@@ -36,7 +36,7 @@ class Context implements ContextInterface
 
     public function set(string $name, mixed $value): static
     {
-        ArrayPath::set($this->data, $name, $value);
+        Exrray::set($this->data, $name, $value);
 
         return $this;
     }

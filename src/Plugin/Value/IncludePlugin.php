@@ -1,8 +1,7 @@
 <?php
 namespace Jsonyx\Plugin\Value;
 
-
-use Jsonyx\Mix\ArrayPath;
+use Exrray\Exrray;
 use Jsonyx\Plugin\AbstractPlugin;
 
 class IncludePlugin extends AbstractPlugin
@@ -24,7 +23,7 @@ class IncludePlugin extends AbstractPlugin
                 ->parseFile($file);
 
             if ($fragment && is_array($value)) {
-                $value = ArrayPath::get($value, $fragment);
+                $value = Exrray::get($value, $fragment);
             }
         }
 
