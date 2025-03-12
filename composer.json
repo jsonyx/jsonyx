@@ -12,7 +12,7 @@
     ],
     "require": {
         "php": ">=8.2",
-        "exrray/exrray": "^1.0"
+        "exrray/plug": "^1.0"
     },
     "autoload": {
         "psr-4": {
