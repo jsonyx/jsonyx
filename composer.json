@@ -23,5 +23,8 @@
     "autoload-dev": {
         "psr-4": {
         }
+    },
+    "suggest": {
+	"concept-labs/singularity": "PSR Container. Powerfull aAnd Flexable Dependency Injection pack"
     }
 }
