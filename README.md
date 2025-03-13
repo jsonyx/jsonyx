@@ -23,14 +23,43 @@ composer require jsonyx/jsonyx
 Here is a basic example of how to use `jsonyx`:
 
 ```php
-require 'vendor/autoload.php';
 
-use Jsonyx\Jsonyx;
+use Jsonyx\Facade\Jsonyx;
 
-$json = '{"name": "John", "age": 30, "city": "New York"}';
-$data = Jsonyx::parse($json);
+$json = '
+    {
+        "@import": "common/constants.json",
+        "@const": {
+            "FOO": "foo",
+            "BAR": "bar"
+        },
+        "foo-refs": {
+            "reference-node": {
+                ...
+            }
+        },
+        "user": {
+            "name": "${user.name}",
+            "age": 30,
+            "foo": "@const(FOO) and @const(BAR)",
+            "baz": "env value: @env(BAZ)",
+            "ref": "@reference(foo-refs.reference-node),
+            "address": "@include(user/${user.id}/address.json)"
+        }
+    }
+';
+$userData = [
+    'id' => 1,
+    'name': 'John Doe'
+];
 
-echo $data->name; // Outputs: John
+$jsonyx = \Jsonyx\Facade\Jsonyx::Jsonyx($userData); // or new Jsonyx($userData)
+
+$jsonyx->withPlugin(
+    function()
+)
+
+
 ```
 
 ## Contributing

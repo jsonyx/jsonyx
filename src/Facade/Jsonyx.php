@@ -22,9 +22,26 @@ class Jsonyx
      * 
      * @return \Jsonyx\JsonyxInterface
      */
-    public static function Jsonyx(int $flags = 0): JsonyxInterface
+    public static function Jsonyx(array $context = [], int $flags = 0): JsonyxInterface
     {
-        return static::getInstance([], $flags);
+        return static::getInstance($context, $flags);
+    }
+
+    /**
+     * Parse a JSON string or file.
+     *
+     * @param  string  $json    The JSON string or file
+     * @param  array  $context  The context data
+     * 
+     * @return array
+     */
+    public function parse(string $json): array
+    {
+        if (is_file($json)) {
+            return static::parseFile($json);
+        }
+
+        return static::parseJson($json);
     }
 
     /**
