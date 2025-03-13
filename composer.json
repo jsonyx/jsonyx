@@ -1,8 +1,8 @@
 {
     "name": "jsonyx/jsonyx",
     "type": "library",
-    "description": "(C)oncept-Labs Extended JSON",
-    "keywords": ["php","json", "extended"],
+    "description": "(C)oncept-Labs Extended JSON Pluggable parser",
+    "keywords": ["php","json", "extended", "pluggable"],
     "license": "MIT",
     "authors": [
         {
@@ -26,6 +26,7 @@
         }
     },
     "suggest": {
+        "pluggarray/pluggarray": "Pluggable array walker"
 	"concept-labs/singularity": "PSR Container. Powerfull aAnd Flexable Dependency Injection pack"
     }
 }
