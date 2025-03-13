@@ -1,26 +1,29 @@
 <?php
+/**
+* @package Jsonyx
+* @author  Viktor Halitsky (concept.galitsky@gmail.com)
+* @license MIT
+*/
 namespace Jsonyx\Plugin\Value;
 
-
+use DotArray\DotArray;
 use Jsonyx\Plugin\AbstractPlugin;
 
 class Reference extends AbstractPlugin
 {
-    const PATTERN = '/\@{(.*?)}/';
+    /**
+     * The pattern to match.
+     */
+    const PATTERN = '/@reference\((.*?)\)/';
 
-    
-    public function __invoke(mixed $value, string $path, &$data, callable $next): mixed
+    /**
+     * {@inheritDoc}
+     * 
+     */
+    public function __invoke(mixed $value, string $path, array &$data, callable $next): mixed
     {
-        if (is_string($value)) { 
-            $value = preg_replace_callback(
-                '/\${(.*?)}/',
-                function ($matches) use ($path) {
-                    return $this->getJsonix()
-                        ->getContext()
-                            ->get($matches[1]);
-                },
-                $value
-            );
+        if (is_string($value) && preg_match(static::PATTERN, $value, $matches)) {
+            $value = DotArray::get($data, $matches[1]);
         }
 
         return $next($value, $path, $data);

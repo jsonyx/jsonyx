@@ -1,13 +1,27 @@
 <?php
+/**
+* @package Jsonyx
+* @author  Viktor Halitsky (concept.galitsky@gmail.com)
+* @license MIT
+*/
 namespace Jsonyx\Plugin\Directive;
 
-use Exrray\Exrray;
+use DotArray\DotArray;
 use Jsonyx\Plugin\AbstractPlugin;
 
 class Import extends AbstractPlugin
 {
     const PATTERN = '/@import$/i';
 
+    /**
+     * {@inheritDoc}
+     * 
+     * Directives are used to modify the data structure.
+     * 
+     * Import a JSON file into the data structure into the current "path"(dot notation).
+     * Data structure is modified in place.
+     * Node is removed from the data structure.
+     */
     public function __invoke(mixed $value, string $path, array &$data, callable $next): mixed
     {
         if (is_string($value) && preg_match(static::PATTERN, $path)) {   
@@ -20,15 +34,14 @@ class Import extends AbstractPlugin
             if ($fragment) {
                 $file = str_replace("#{$fragment}", '', $file);
             }
-echo "<h1>$file</h1>";
             $includeData = $this->getJsonix()
                 ->parseFile($file);
             
             if ($fragment && is_array($includeData)) {
-                $includeData = Exrray::get($includeData, $fragment);
+                $includeData = DotArray::get($includeData, $fragment);
             }
 
-            Exrray::mergeTo($path, $data, $includeData);
+            DotArray::mergeTo($path, $data, $includeData);
 
             return null;
         }
