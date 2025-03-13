@@ -9,7 +9,7 @@
 */
 namespace Jsonyx\Context;
 
-use DotArray\DotArray;
+use DotAccess\DotArray\DotApi as DotArray;
 
 class Context implements ContextInterface
 {

@@ -6,8 +6,8 @@
 */
 namespace Jsonyx\Plugin\Value;
 
-use DotArray\DotArray;
 use Jsonyx\Plugin\AbstractPlugin;
+use DotAccess\DotArray\DotApi as DotArray;
 
 class Reference extends AbstractPlugin
 {

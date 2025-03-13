@@ -6,7 +6,7 @@
 */
 namespace Jsonyx\Plugin\Directive;
 
-use DotArray\DotArray;
+use DotAccess\DotArray\DotApi as DotArray;
 use Jsonyx\Plugin\AbstractPlugin;
 
 class Import extends AbstractPlugin
