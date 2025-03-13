@@ -13,7 +13,7 @@
     "require": {
         "php": ">=8.2",
         "pluggarray/pluggarray": "^1.0",
-        "dotaccess/arrayaccess": "^1.0"
+        "dotaccess/dotarray": "^1.0"
     },
     "autoload": {
         "psr-4": {
